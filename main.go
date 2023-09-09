@@ -23,9 +23,7 @@ var (
 )
 
 func init() {
-	flag.StringVar(&format, "format", "csv", `Format output:
-'csv': Print output in CSV format (default)
-'tsv': Print output in TSV format`)
+	flag.StringVar(&format, "format", "csv", "Format output(csv, tsv)")
 	flag.StringVar(&pat, "pat", "", "GitHub Private Access Tokens(for accessing private repositories)")
 	flag.BoolVar(&showVersion, "version", false, "Print version information and quit")
 
