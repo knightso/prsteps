@@ -24,4 +24,4 @@ jobs:
       - name: Install prsteps
         run: go install github.com/knightso/prsteps@latest
       - name: Execute
-        run: prsteps ${{github.repository}} ${{github.event.number}}
+        run: prsteps -pat ${{ secrets.GITHUB_TOKEN }} ${{ github.repository }} ${{ github.event.number }}
