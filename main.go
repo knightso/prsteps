@@ -14,9 +14,12 @@ import (
 	"github.com/google/go-github/v55/github"
 )
 
+const version = "1.0.0"
+
 var (
-	format string
-	pat    string
+	showVersion bool
+	format      string
+	pat         string
 )
 
 func init() {
@@ -24,6 +27,7 @@ func init() {
 'csv': Print output in CSV format (default)
 'tsv': Print output in TSV format`)
 	flag.StringVar(&pat, "pat", "", "GitHub Private Access Tokens(for accessing private repositories)")
+	flag.BoolVar(&showVersion, "version", false, "Print version information and quit")
 
 	flag.Usage = func() {
 		fmt.Fprintf(os.Stderr, "Usage: prsteps [OPTIONS] REPO PR\n")
@@ -34,6 +38,10 @@ func init() {
 func main() {
 	flag.Parse()
 
+	if showVersion {
+		fmt.Println(version)
+		return
+	}
 	if len(flag.Args()) < 2 {
 		fmt.Fprintf(os.Stderr, "requires exactly 2 argument.\n")
 		flag.Usage()
